@@ -17,10 +17,10 @@ module.exports = {
       args[0]['process.env'].MODE = `"${mode}"`
       switch (args[0]['process.env'].MODE) {
         case '"test"':
-          args[0]['process.env'].BASE_API = '"http://test.com"'
+          args[0]['process.env'].BASE_API = '"/test"'
           break
         case '"dev"':
-          args[0]['process.env'].BASE_API = '"http://baseApi.com"'
+          args[0]['process.env'].BASE_API = '"/api"'
           break
       }
       return args
@@ -77,5 +77,23 @@ module.exports = {
       // 配置 size-plugin 插件
       isProductionEnvFlag ? new SizePlugin() : () => {}
     ]
+  },
+
+  // 配置跨域
+  devServer: {
+    port: 8080, // 端口号
+    host: '0.0.0.0',
+    https: false,
+    open: false, // 是否自动启动浏览器
+    proxy: {
+      '/api': {
+        target: 'http://10.18.72.30:20080/',
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    }
   }
 }
