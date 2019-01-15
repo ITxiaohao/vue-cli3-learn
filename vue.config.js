@@ -1,4 +1,8 @@
 const path = require('path')
+const SizePlugin = require('size-plugin')
+
+// 只在生产环境下调用 size-plugin 插件
+const isProductionEnvFlag = process.env.NODE_ENV === 'production'
 
 function resolve(dir) {
   return path.join(__dirname, './', dir)
@@ -19,7 +23,6 @@ module.exports = {
           args[0]['process.env'].BASE_API = '"http://baseApi.com"'
           break
       }
-      console.log('args', args)
       return args
     })
 
@@ -39,5 +42,11 @@ module.exports = {
     const imagesRule = config.module.rule('images')
     imagesRule.exclude.add(resolve('src/icons'))
     config.module.rule('images').test(/\.(png|jpe?g|gif|svg)(\?.*)?$/)
+  },
+  configureWebpack: {
+    plugins: [
+      // 配置 size-plugin 插件
+      isProductionEnvFlag ? new SizePlugin() : () => {}
+    ]
   }
 }
