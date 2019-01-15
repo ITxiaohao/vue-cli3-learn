@@ -6,6 +6,23 @@ function resolve(dir) {
 
 module.exports = {
   chainWebpack: config => {
+    // 这里是对环境的配置，不同环境对应不同的 BASE_API，以便 axios 的请求地址不同
+    config.plugin('define').tap(args => {
+      const argv = process.argv
+      const mode = argv[argv.indexOf('--project-mode') + 1]
+      args[0]['process.env'].MODE = `"${mode}"`
+      switch (args[0]['process.env'].MODE) {
+        case '"test"':
+          args[0]['process.env'].BASE_API = '"http://test.com"'
+          break
+        case '"dev"':
+          args[0]['process.env'].BASE_API = '"http://baseApi.com"'
+          break
+      }
+      console.log('args', args)
+      return args
+    })
+
     // svg loader
     const svgRule = config.module.rule('svg') // 找到 svg-loader
     svgRule.uses.clear() // 清除已有的 loader, 如果不这样做会添加在此loader之后
