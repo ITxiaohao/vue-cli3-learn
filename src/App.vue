@@ -7,8 +7,19 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view />
+    <request-loding></request-loding>
   </div>
 </template>
+
+<script>
+import RequestLoding from '@/components/RequestLoading.vue'
+
+export default {
+  components: {
+    RequestLoding
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
