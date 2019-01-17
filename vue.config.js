@@ -8,6 +8,44 @@ function resolve(dir) {
   return path.join(__dirname, './', dir)
 }
 
+// cdn预加载使用
+const externals = {
+  vue: 'Vue',
+  'vue-router': 'VueRouter',
+  vuex: 'Vuex',
+  axios: 'axios',
+  'element-ui': 'ELEMENT',
+  'js-cookie': 'Cookies',
+  nprogress: 'NProgress'
+}
+
+const cdn = {
+  // 开发环境
+  dev: {
+    css: [
+      'https://unpkg.com/element-ui/lib/theme-chalk/index.css',
+      'https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css'
+    ],
+    js: []
+  },
+  // 生产环境
+  build: {
+    css: [
+      'https://unpkg.com/element-ui/lib/theme-chalk/index.css',
+      'https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css'
+    ],
+    js: [
+      'https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js',
+      'https://cdn.jsdelivr.net/npm/vue-router@3.0.1/dist/vue-router.min.js',
+      'https://cdn.jsdelivr.net/npm/vuex@3.0.1/dist/vuex.min.js',
+      'https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js',
+      'https://unpkg.com/element-ui/lib/index.js',
+      'https://cdn.bootcss.com/js-cookie/2.2.0/js.cookie.min.js',
+      'https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js'
+    ]
+  }
+}
+
 module.exports = {
   chainWebpack: config => {
     // 这里是对环境的配置，不同环境对应不同的 BASE_API，以便 axios 的请求地址不同
@@ -22,6 +60,19 @@ module.exports = {
         case '"dev"':
           args[0]['process.env'].BASE_API = '"/api"'
           break
+      }
+      return args
+    })
+
+    /**
+     * 添加 CDN 参数到 htmlWebpackPlugin 配置中，详见 public/index.html 修改
+     */
+    config.plugin('html').tap(args => {
+      if (process.env.NODE_ENV === 'production') {
+        args[0].cdn = cdn.build
+      }
+      if (process.env.NODE_ENV === 'development') {
+        args[0].cdn = cdn.dev
       }
       return args
     })
@@ -70,28 +121,42 @@ module.exports = {
     config.optimization.runtimeChunk('single')
   },
 
-  configureWebpack: {
-    plugins: [
-      // 配置 size-plugin 插件
-      isProductionEnvFlag ? new SizePlugin() : () => {}
-    ]
-  },
-
-  // 配置跨域
-  devServer: {
-    port: 8080, // 端口号
-    host: '0.0.0.0',
-    https: false,
-    open: false, // 是否自动启动浏览器
-    proxy: {
-      '/api': {
-        target: 'http://10.18.72.30:20080/',
-        ws: true,
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
+  // 修改 webpack config, 使其不打包 externals 下的资源
+  configureWebpack: () => {
+    const myConfig = {}
+    if (process.env.NODE_ENV === 'production') {
+      // 1. 生产环境 npm 包转 CDN
+      myConfig.externals = externals
+    }
+    if (process.env.NODE_ENV === 'development') {
+      /**
+       * 关闭 host check，方便使用 ngrok 之类的内网转发工具
+       * 配置跨域
+       */
+      myConfig.devServer = {
+        disableHostCheck: true,
+        hot: true,
+        port: 8081, // 端口号
+        host: '0.0.0.0',
+        https: false,
+        open: false, // 是否自动启动浏览器
+        // compress: true, // 是否启用 gzip 压缩
+        proxy: {
+          '/api': {
+            target: 'http://10.18.72.30:20080/',
+            ws: true,
+            changeOrigin: true,
+            pathRewrite: {
+              '^/api': ''
+            }
+          }
         }
       }
     }
+    myConfig.plugins = [
+      // 配置 size-plugin 插件
+      isProductionEnvFlag ? new SizePlugin() : () => {}
+    ]
+    return myConfig
   }
 }
