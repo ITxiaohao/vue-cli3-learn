@@ -1,29 +1,37 @@
-# vue-cli3-learn
+# vue-cli3 配置及优化
 
 ## Project setup
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 启动项目
+
 ```
-npm run serve
+npm run dev
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### 启动 test 环境下的项目
 
-### Run your tests
 ```
 npm run test
 ```
 
-### Lints and fixes files
+### 打包项目
+
+```
+npm run build
+```
+
+### 打包 test 环境下的项目
+
+```
+npm run build:test
+```
+
+### 修复文件
+
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
