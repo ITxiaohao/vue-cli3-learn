@@ -1,6 +1,9 @@
 const path = require('path')
 const SizePlugin = require('size-plugin')
 
+// 引入开启 Gzip 的插件
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
+
 // 只在生产环境下调用 size-plugin 插件
 const isProductionEnvFlag = process.env.NODE_ENV === 'production'
 
@@ -45,6 +48,11 @@ const cdn = {
     ]
   }
 }
+
+// 是否使用gzip
+const productionGzip = true
+// 需要gzip压缩的文件后缀
+const productionGzipExtensions = ['js', 'css']
 
 module.exports = {
   chainWebpack: config => {
@@ -127,6 +135,22 @@ module.exports = {
     if (process.env.NODE_ENV === 'production') {
       // 1. 生产环境 npm 包转 CDN
       myConfig.externals = externals
+
+      myConfig.plugins = []
+      // 2. 构建时开启gzip，降低服务器压缩对CPU资源的占用，服务器也要相应开启gzip
+      productionGzip &&
+        myConfig.plugins.push(
+          new CompressionWebpackPlugin({
+            test: new RegExp(
+              '\\.(' + productionGzipExtensions.join('|') + ')$' // 处理所有匹配此 {RegExp} 的资源
+            ),
+            threshold: 1024, // 1k, 只处理比这个值大的资源。按字节计算
+            minRatio: 0.8 // 只有压缩率比这个值小的资源才会被处理
+          })
+        )
+
+      // 配置 size-plugin 插件
+      myConfig.plugins.push(isProductionEnvFlag ? new SizePlugin() : () => {})
     }
     if (process.env.NODE_ENV === 'development') {
       /**
@@ -153,10 +177,6 @@ module.exports = {
         }
       }
     }
-    myConfig.plugins = [
-      // 配置 size-plugin 插件
-      isProductionEnvFlag ? new SizePlugin() : () => {}
-    ]
     return myConfig
   }
 }
