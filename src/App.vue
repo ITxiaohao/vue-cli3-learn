@@ -13,10 +13,18 @@
 
 <script>
 import RequestLoding from '@/components/RequestLoading.vue'
+import { login } from 'api/login'
 
 export default {
   components: {
     RequestLoding
+  },
+  created() {
+    let username = 'root'
+    let password = 123456
+    login(username, password).then(res => {
+      console.log(res)
+    })
   }
 }
 </script>

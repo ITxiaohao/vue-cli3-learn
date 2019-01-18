@@ -56,6 +56,12 @@ const productionGzipExtensions = ['js', 'css']
 
 module.exports = {
   chainWebpack: config => {
+    // 配置别名
+    config.resolve.alias
+      .set('@', resolve('src'))
+      .set('api', resolve('src/api'))
+      .set('static', resolve('src/static'))
+
     // 这里是对环境的配置，不同环境对应不同的 BASE_API，以便 axios 的请求地址不同
     config.plugin('define').tap(args => {
       const argv = process.argv
