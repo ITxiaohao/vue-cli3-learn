@@ -170,7 +170,8 @@ module.exports = {
         host: '0.0.0.0',
         https: false,
         open: false, // 是否自动启动浏览器
-        // compress: true, // 是否启用 gzip 压缩
+        compress: true, // 是否启用 gzip 压缩
+        // 代理跨域
         proxy: {
           '/api': {
             target: 'http://10.18.72.30:20080/',

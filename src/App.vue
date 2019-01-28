@@ -22,8 +22,8 @@ export default {
   created() {
     let username = 'root'
     let password = 123456
-    login(username, password).then(res => {
-      console.log(res)
+    login(username, password).then(() => {
+      // console.log(res)
     })
   }
 }

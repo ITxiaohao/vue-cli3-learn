@@ -25,7 +25,7 @@ service.interceptors.request.use(
       store.dispatch('setLoading', 0)
     }, 300)
 
-    console.log(error)
+    // console.log(error)
     Promise.reject(error)
   }
 )
