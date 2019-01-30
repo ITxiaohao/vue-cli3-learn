@@ -1,5 +1,6 @@
 ## 0.1.0 (2019-01-30)
 
+* docs: 更新日志 ([eb31c4e](https://github.com/ITxiaohao/vue-cli3-learn/commit/eb31c4e))
 * docs: 更新日志 ([520a975](https://github.com/ITxiaohao/vue-cli3-learn/commit/520a975))
 * docs: 更新日志 ([33cb75e](https://github.com/ITxiaohao/vue-cli3-learn/commit/33cb75e))
 * test: aadfadsfasdf ([452492a](https://github.com/ITxiaohao/vue-cli3-learn/commit/452492a))
