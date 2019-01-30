@@ -1,0 +1,28 @@
+## 0.1.0 (2019-01-30)
+
+* feat: 新增 commit 规范插件 ([49c7faa](https://github.com/ITxiaohao/vue-cli3-learn/commit/49c7faa))
+* :art: 修复细节 ([2d5ae48](https://github.com/ITxiaohao/vue-cli3-learn/commit/2d5ae48))
+* :heavy_plus_sign: webpack 开启 Gzip 的插件 ([025342c](https://github.com/ITxiaohao/vue-cli3-learn/commit/025342c))
+* :heavy_plus_sign: 安装 js-cookie 和 nprogress 插件 ([c9fe95a](https://github.com/ITxiaohao/vue-cli3-learn/commit/c9fe95a))
+* :heavy_plus_sign: 添加 size-plugin 插件 ([231bee4](https://github.com/ITxiaohao/vue-cli3-learn/commit/231bee4))
+* :memo: 编写项目说明 ([20d7392](https://github.com/ITxiaohao/vue-cli3-learn/commit/20d7392))
+* :sparkles: 使用 cookie 来存储 token ([14694ae](https://github.com/ITxiaohao/vue-cli3-learn/commit/14694ae))
+* :sparkles: 完善 vuex，并与 axios 结合实现全局 loading ([c741f91](https://github.com/ITxiaohao/vue-cli3-learn/commit/c741f91))
+* :sparkles: 封装 axios 并配置不同环境下的 baseUrl ([569b74a](https://github.com/ITxiaohao/vue-cli3-learn/commit/569b74a))
+* :sparkles: 封装 svg 组件，全局使用 svg ([6c400b7](https://github.com/ITxiaohao/vue-cli3-learn/commit/6c400b7))
+* :sparkles: 开启 cdn 优化，:wrench: 修改 vue.config.js 配置 ([2941fc9](https://github.com/ITxiaohao/vue-cli3-learn/commit/2941fc9))
+* :sparkles: 开启 cdn 优化，:wrench: 修改 vue.config.js 配置及 public/index.html 页面 ([a26fb24](https://github.com/ITxiaohao/vue-cli3-learn/commit/a26fb24))
+* :sparkles: 通过 router 的 beforeEach 生命周期来判断有无 token ，做路由拦截 ([1e85a3f](https://github.com/ITxiaohao/vue-cli3-learn/commit/1e85a3f))
+* :sparkles: 配置 404 页面 ([a0ab696](https://github.com/ITxiaohao/vue-cli3-learn/commit/a0ab696))
+* :tada: 初始化项目 :wrench: 添加 Prettier 格式化规则 ([d40dae1](https://github.com/ITxiaohao/vue-cli3-learn/commit/d40dae1))
+* :truck: 更改 store/getters.js 文件名 ([e4687a9](https://github.com/ITxiaohao/vue-cli3-learn/commit/e4687a9))
+* :wrench: 更新 webpack4 拆分代码配置 ([8da351f](https://github.com/ITxiaohao/vue-cli3-learn/commit/8da351f))
+* :wrench: 添加 Gzip 配置文件 ([007efbc](https://github.com/ITxiaohao/vue-cli3-learn/commit/007efbc))
+* :wrench: 添加依赖 ([c8c09ed](https://github.com/ITxiaohao/vue-cli3-learn/commit/c8c09ed))
+* :wrench: 添加别名 :sparkles: 增加 api 使用 ([b056d03](https://github.com/ITxiaohao/vue-cli3-learn/commit/b056d03))
+* :wrench: 添加跨域配置 ([5a521df](https://github.com/ITxiaohao/vue-cli3-learn/commit/5a521df))
+* :zap: 全局引入 elementUI 并配置 webpack 拆分代码 ([1a6bd05](https://github.com/ITxiaohao/vue-cli3-learn/commit/1a6bd05))
+* 测试 ([5058916](https://github.com/ITxiaohao/vue-cli3-learn/commit/5058916))
+
+
+
