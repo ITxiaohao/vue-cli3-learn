@@ -25,7 +25,7 @@ export default {
     login(username, password).then(() => {
       // console.log(res)
     })
-    console.log('测试')
+    console.log('测试 ')
   }
 }
 </script>
