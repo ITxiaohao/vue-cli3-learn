@@ -10,7 +10,7 @@
     "build:test": "vue-cli-service build --project-mode test",
     "lint": "vue-cli-service lint",
     "commit": "git-cz",
-    "changelog": "conventional-changelog -i CHANGELOG.md -s -r 0"
+    "changelog": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add . && git commit -m 'docs: 更新日志' "
   },
   "dependencies": {
     "axios": "^0.18.0",
