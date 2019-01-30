@@ -26,7 +26,7 @@ export default {
       // console.log(res)
     })
     let a = '2ssdf'
-    let c
+    // let cs
     console.log(a)
   }
 }
