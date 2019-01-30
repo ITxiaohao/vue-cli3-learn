@@ -25,8 +25,7 @@ export default {
     login(username, password).then(() => {
       // console.log(res)
     })
-    let a = '2ssdf'
-    // let cs
+    let a = '2ssdf' // 双引号 + 分号在这个项目规则里都是不通过的
     console.log(a)
   }
 }
