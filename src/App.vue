@@ -26,6 +26,7 @@ export default {
       // console.log(res)
     })
     let a = '2s'
+    let b
     console.log(a)
   }
 }
