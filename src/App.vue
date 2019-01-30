@@ -25,7 +25,6 @@ export default {
     login(username, password).then(() => {
       // console.log(res)
     })
-    console.log(1)
   }
 }
 </script>
