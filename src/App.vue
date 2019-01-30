@@ -25,8 +25,8 @@ export default {
     login(username, password).then(() => {
       // console.log(res)
     })
-    let a = "2"
-    console.log(a);
+    let a = '2s'
+    console.log(a)
   }
 }
 </script>
